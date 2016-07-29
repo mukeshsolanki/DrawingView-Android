@@ -1,5 +1,27 @@
 apply plugin: 'com.android.library'
+ext {
+  bintrayRepo = 'maven'
+  bintrayName = 'drawingview'
 
+  publishedGroupId = 'com.mukesh'
+  libraryName = 'drawingview'
+  artifact = 'drawingview'
+
+  libraryDescription = 'A simple view that can be integrated into your project and be used as a scratch pad or a drawing board or a signature pad.'
+
+  siteUrl = 'https://github.com/mukeshsolanki/DrawingView-Android'
+  gitUrl = 'git@github.com:mukeshsolanki/DrawingView-Android.git'
+
+  libraryVersion = '1.0.0'
+
+  developerId = 'mukeshsolanki'
+  developerName = 'Mukesh Solanki'
+  developerEmail = 'themukeshsolanki@gmail.com'
+
+  licenseName = 'The Apache Software License, Version 2.0'
+  licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+  allLicenses = ["Apache-2.0"]
+}
 android {
   compileSdkVersion 24
   buildToolsVersion "24.0.1"
@@ -8,7 +30,7 @@ android {
     minSdkVersion 9
     targetSdkVersion 24
     versionCode 1
-    versionName "1.0"
+    versionName "1.0.0"
   }
   buildTypes {
     release {
