@@ -4,7 +4,7 @@
 # DrawingView-Android 
 DrawingView is a simple view that lets you draw on screen using your fingers and lets you save the drawings as images.
 
-![Demo](https://raw.githubusercontent.com/mukeshsolanki/MarkdownView-Android/master/Screenshots/demo.gif)
+![Demo](https://github.com/mukeshsolanki/DrawingView-Android/blob/master/ScreenShoot.gif)
 
 ## Getting started
 
