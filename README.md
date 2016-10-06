@@ -1,5 +1,6 @@
 [ ![Download](https://api.bintray.com/packages/mukeshsolanki/maven/drawingview/images/download.svg) ](https://bintray.com/mukeshsolanki/maven/drawingview/_latestVersion)
 [![Release](https://jitpack.io/v/mukeshsolanki/DrawingView-Android.svg)](https://jitpack.io/#mukeshsolanki/DrawingView-Android)
+[ ![PayPal](https://img.shields.io/badge/paypal-donate-yellow.svg) ](https://www.paypal.me/mukeshsolanki)
 
 # DrawingView-Android 
 DrawingView is a simple view that lets you draw on screen using your fingers and lets you save the drawings as images.
