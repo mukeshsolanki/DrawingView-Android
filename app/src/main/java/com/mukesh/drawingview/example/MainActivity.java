@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity
             })
             .create()
             .show(getSupportFragmentManager(), "Pen color picker");
-        mDrawingView.setPenColor(Color.WHITE);
         break;
       case R.id.background_color_button:
         new ChromaDialog.Builder().initialColor(Color.GREEN)

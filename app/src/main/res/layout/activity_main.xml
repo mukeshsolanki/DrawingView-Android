@@ -20,39 +20,53 @@
       android:layout_height="wrap_content"
       android:layout_above="@+id/size_layout"
       android:gravity="center"
-      android:padding="@dimen/activity_vertical_margin"
+      android:orientation="vertical"
       >
-
-    <Button
-        android:id="@+id/save_button"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:text="Save Image"
-        />
-    <Button
-        android:id="@+id/pen_button"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:text="Pen"
-        />
-    <Button
-        android:id="@+id/eraser_button"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:text="Eraser"
-        />
-    <Button
-        android:id="@+id/pen_color_button"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:text="Pen Color"
-        />
-    <Button
-        android:id="@+id/background_color_button"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:text="Background Color"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <Button
+          android:id="@+id/save_button"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="Save Image"
+          />
+      <Button
+          android:id="@+id/eraser_button"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="Eraser"
+          />
+      <Button
+          android:id="@+id/pen_button"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="Pen"
+          />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <Button
+          android:id="@+id/pen_color_button"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:text="Pen Color"
+          />
+      <Button
+          android:id="@+id/background_color_button"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:text="Background Color"
+          />
+    </LinearLayout>
   </LinearLayout>
   <LinearLayout
       android:id="@+id/size_layout"
