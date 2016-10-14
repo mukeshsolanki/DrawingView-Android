@@ -20,3 +20,5 @@ before_script:
 
 script:
     - ./gradlew clean test
+notifications:
+  email: false
