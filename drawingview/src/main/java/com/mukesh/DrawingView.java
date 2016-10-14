@@ -183,9 +183,10 @@ public class DrawingView extends View {
     return mPaint.getColor();
   }
 
-  public void loadImage(Bitmap bitmap){
-    this.mBitmap = bitmap.copy(Bitmap.Config.ARGB_8888,true);
+  public void loadImage(Bitmap bitmap) {
+    mBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
     bitmap.recycle();
+    invalidate();
   }
 
   public boolean saveImage(String filePath, String filename, Bitmap.CompressFormat format,

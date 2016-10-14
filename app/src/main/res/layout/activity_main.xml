@@ -34,18 +34,11 @@
           android:text="Save Image"
           />
       <Button
-          android:id="@+id/eraser_button"
+          android:id="@+id/load_button"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:layout_weight="1"
-          android:text="Eraser"
-          />
-      <Button
-          android:id="@+id/pen_button"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:text="Pen"
+          android:text="Load Image"
           />
     </LinearLayout>
     <LinearLayout
@@ -53,11 +46,11 @@
         android:layout_height="wrap_content"
         >
       <Button
-          android:id="@+id/pen_color_button"
+          android:id="@+id/eraser_button"
           android:layout_width="0dp"
-          android:layout_height="match_parent"
+          android:layout_height="wrap_content"
           android:layout_weight="1"
-          android:text="Pen Color"
+          android:text="Eraser"
           />
       <Button
           android:id="@+id/background_color_button"
@@ -65,6 +58,25 @@
           android:layout_height="match_parent"
           android:layout_weight="1"
           android:text="Background Color"
+          />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <Button
+          android:id="@+id/pen_button"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="Pen"
+          />
+      <Button
+          android:id="@+id/pen_color_button"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:text="Pen Color"
           />
     </LinearLayout>
   </LinearLayout>

@@ -1,11 +1,13 @@
 package com.mukesh.drawingview.example;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.ColorInt;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -17,7 +19,8 @@ import com.pavelsikun.vintagechroma.colormode.ColorMode;
 
 public class MainActivity extends AppCompatActivity
     implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
-  private Button mSaveButton, mPenButton, mEraserButton, mPenColorButton, mBackgroundColorButton;
+  private Button mSaveButton, mPenButton, mEraserButton, mPenColorButton, mBackgroundColorButton,
+      mLoadButton;
   private DrawingView mDrawingView;
   private SeekBar mPenSizeSeekbar, mEraserSeekbar;
 
@@ -36,11 +39,13 @@ public class MainActivity extends AppCompatActivity
     mBackgroundColorButton.setOnClickListener(this);
     mPenSizeSeekbar.setOnSeekBarChangeListener(this);
     mEraserSeekbar.setOnSeekBarChangeListener(this);
+    mLoadButton.setOnClickListener(this);
   }
 
   private void initializeUI() {
     mDrawingView = (DrawingView) findViewById(R.id.scratch_pad);
     mSaveButton = (Button) findViewById(R.id.save_button);
+    mLoadButton = (Button) findViewById(R.id.load_button);
     mPenButton = (Button) findViewById(R.id.pen_button);
     mEraserButton = (Button) findViewById(R.id.eraser_button);
     mPenColorButton = (Button) findViewById(R.id.pen_color_button);
@@ -54,6 +59,11 @@ public class MainActivity extends AppCompatActivity
       case R.id.save_button:
         mDrawingView.saveImage(Environment.getExternalStorageDirectory().toString(), "test",
             Bitmap.CompressFormat.PNG, 100);
+        break;
+      case R.id.load_button:
+        Log.d("saveImage", "quality cannot be");
+        mDrawingView.loadImage(BitmapFactory.decodeResource(getResources(), R.raw.image));
+        Log.d("saveImage", "quality cannot bter that 100");
         break;
       case R.id.pen_button:
         mDrawingView.initializePen();
