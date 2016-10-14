@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Drawingview-android by mukeshsolanki</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Drawingview-android</h1>
+      <h2 class="project-tagline">DrawingView is a simple view that lets you draw on screen using your fingers and lets you save the drawings as images.</h2>
+      <a href="https://github.com/mukeshsolanki/DrawingView-Android" class="btn">View on GitHub</a>
+      <a href="https://github.com/mukeshsolanki/DrawingView-Android/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/mukeshsolanki/DrawingView-Android/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1 align="center">
+<a id="drawingview-android" class="anchor" href="#drawingview-android" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>DrawingView-Android</h1>
+
+<p align="center">
+  <a href="https://android-arsenal.com/api?level=9"> <img src="https://img.shields.io/badge/API-9%2B-blue.svg?style=flat"></a>
+  <a href="https://jitpack.io/#mukeshsolanki/DrawingView-Android"> <img src="https://jitpack.io/v/mukeshsolanki/DrawingView-Android.svg"></a>
+  <a href="http://android-arsenal.com/details/1/4042"> <img src="https://img.shields.io/badge/Android%20Arsenal-DrawingView--Android-brightgreen.svg?style=flat"></a>
+  <a href="https://travis-ci.org/mukeshsolanki/DrawingView-Android"> <img src="https://travis-ci.org/mukeshsolanki/DrawingView-Android.svg?branch=master"></a>
+  <a href="https://www.paypal.me/mukeshsolanki"> <img src="https://img.shields.io/badge/paypal-donate-yellow.svg"></a>
+  <br><br>
+  DrawingView is a simple view that lets you draw on screen using your fingers and lets you save the drawings as images.
+</p>
+
+<p><img src="https://raw.githubusercontent.com/mukeshsolanki/DrawingView-Android/master/ScreenShoot.gif"></p>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting started</h2>
+
+<p>Its really simple to integrate <em>DrawingView</em> in android. All you need to do make the following change to you build gradle.</p>
+
+<p>Step 1. Add the JitPack repository to your build file. Add it in your root build.gradle at the end of repositories:</p>
+
+<div class="highlight highlight-source-java"><pre>allprojects {
+  repositories {
+    <span class="pl-c1">...</span>
+    maven { url <span class="pl-s"><span class="pl-pds">"</span>https://jitpack.io<span class="pl-pds">"</span></span> }
+  }
+}</pre></div>
+
+<p>Step 2. Add the dependency</p>
+
+<div class="highlight highlight-source-java"><pre>dependencies {
+    compile <span class="pl-s"><span class="pl-pds">'</span>com.github.mukeshsolanki:DrawingView-Android:1.0.2<span class="pl-pds">'</span></span>
+}</pre></div>
+
+<h2>
+<a id="how-to-use-drawingview" class="anchor" href="#how-to-use-drawingview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to use DrawingView</h2>
+
+<p>Its fairly simple and straight forward to use <em>DrawingView</em> in you application. Just add the following in your layout where you want to display the DrawingView.</p>
+
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">com</span>.mukesh.DrawingView
+  <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>@+id/scratch_pad<span class="pl-pds">"</span></span>
+  <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>match_parent<span class="pl-pds">"</span></span>
+  <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>match_parent<span class="pl-pds">"</span></span>
+  <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_above</span>=<span class="pl-s"><span class="pl-pds">"</span>@+id/buttons<span class="pl-pds">"</span></span>
+  /&gt;</pre></div>
+
+<p>and reference it in your activity/fragment and assign the DrawingView like wise.</p>
+
+<div class="highlight highlight-source-java"><pre><span class="pl-smi">DrawingView</span> drawingView <span class="pl-k">=</span> (<span class="pl-smi">DrawingView</span>) findViewById(<span class="pl-smi">R</span><span class="pl-k">.</span>id<span class="pl-k">.</span>scratch_pad);
+drawingView<span class="pl-k">.</span>initializePen(); <span class="pl-c">//To use the pen mode to draw on the screen</span>
+drawingView<span class="pl-k">.</span>initializeEraser(); <span class="pl-c">//To use the eraser mode to clear the screen</span>
+drawingView<span class="pl-k">.</span>setBackgroundColor(<span class="pl-k">@ColorInt</span> <span class="pl-k">int</span> color); <span class="pl-c">//To set the background color of the drawing view</span>
+drawingView<span class="pl-k">.</span>setEraserSize(<span class="pl-k">float</span> size); <span class="pl-c">//To set the size of the eraser</span>
+drawingView<span class="pl-k">.</span>setPenSize(<span class="pl-k">float</span> size); <span class="pl-c">//To set the size of the pen</span>
+drawingView<span class="pl-k">.</span>setPenColor(<span class="pl-k">@ColorInt</span> <span class="pl-k">int</span> color); <span class="pl-c">//To set the color of the pen</span>
+drawingView<span class="pl-k">.</span>saveImage(<span class="pl-smi">String</span> filePath, <span class="pl-smi">String</span> filename, <span class="pl-smi">Bitmap</span><span class="pl-k">.</span><span class="pl-smi">CompressFormat</span> format, <span class="pl-k">int</span> quality); <span class="pl-c">//To save the image after your done drawing</span>
+drawingView<span class="pl-k">.</span>loadImage(<span class="pl-smi">Bitmap</span> bitmap); <span class="pl-c">//Load image (your saved drawing)</span></pre></div>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/mukeshsolanki/DrawingView-Android">Drawingview-android</a> is maintained by <a href="https://github.com/mukeshsolanki">mukeshsolanki</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
