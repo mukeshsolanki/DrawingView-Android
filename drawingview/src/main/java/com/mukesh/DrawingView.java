@@ -59,7 +59,9 @@ public class DrawingView extends View {
 
   @Override protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
-    mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+    if (mBitmap == null) {
+      mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+    }
     mCanvas = new Canvas(mBitmap);
     mCanvas.drawColor(Color.TRANSPARENT);
   }
@@ -179,6 +181,11 @@ public class DrawingView extends View {
 
   public @ColorInt int getPenColor() {
     return mPaint.getColor();
+  }
+
+  public void loadImage(Bitmap bitmap){
+    this.mBitmap = bitmap.copy(Bitmap.Config.ARGB_8888,true);
+    bitmap.recycle();
   }
 
   public boolean saveImage(String filePath, String filename, Bitmap.CompressFormat format,
