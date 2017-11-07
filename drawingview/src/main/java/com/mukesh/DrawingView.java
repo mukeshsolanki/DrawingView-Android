@@ -185,6 +185,7 @@ public class DrawingView extends View {
 
   public void loadImage(Bitmap bitmap) {
     mBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+    mCanvas = new Canvas(mBitmap);
     bitmap.recycle();
     invalidate();
   }
