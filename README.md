@@ -1,6 +1,6 @@
 <h1 align="center">DrawingView-Android</h1>
 <p align="center">
-  <a href="https://android-arsenal.com/api?level=9"> <img src="https://img.shields.io/badge/API-9%2B-blue.svg?style=flat" /></a>
+  <a href="https://android-arsenal.com/api?level=9"> <img src="https://img.shields.io/badge/API-14%2B-blue.svg?style=flat" /></a>
   <a href="https://jitpack.io/#mukeshsolanki/DrawingView-Android"> <img src="https://jitpack.io/v/mukeshsolanki/DrawingView-Android.svg" /></a>
   <a href="http://android-arsenal.com/details/1/4042"> <img src="https://img.shields.io/badge/Android%20Arsenal-DrawingView--Android-brightgreen.svg?style=flat" /></a>
   <a href="https://travis-ci.org/mukeshsolanki/DrawingView-Android"> <img src="https://travis-ci.org/mukeshsolanki/DrawingView-Android.svg?branch=master" /></a>
@@ -28,7 +28,7 @@ allprojects {
 Step 2. Add the dependency
 ```java
 dependencies {
-    compile 'com.github.mukeshsolanki:DrawingView-Android:1.0.4'
+    compile 'com.github.mukeshsolanki:DrawingView-Android:<latest-version>'
 }
 ```
 ## How to use DrawingView
