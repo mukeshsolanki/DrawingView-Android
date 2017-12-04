@@ -54,10 +54,11 @@ public class DrawingView extends View {
     mPaint.setStrokeCap(Paint.Cap.ROUND);
     mPaint.setStrokeWidth(mPenSize);
     mDrawMode = true;
-    mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
+    mPaint.setXfermode(null);
   }
 
-  @Override protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+  @Override
+  protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
     if (mBitmap == null) {
       mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
@@ -66,18 +67,17 @@ public class DrawingView extends View {
     mCanvas.drawColor(Color.TRANSPARENT);
   }
 
-  @Override protected void onDraw(Canvas canvas) {
+  @Override
+  protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
     canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
     canvas.drawPath(mPath, mPaint);
   }
 
   private void touch_start(float x, float y) {
-    mPath.reset();
     mPath.moveTo(x, y);
     mX = x;
     mY = y;
-    mCanvas.drawPath(mPath, mPaint);
   }
 
   private void touch_move(float x, float y) {
@@ -88,7 +88,6 @@ public class DrawingView extends View {
       mX = x;
       mY = y;
     }
-    mCanvas.drawPath(mPath, mPaint);
   }
 
   private void touch_up() {
@@ -96,13 +95,14 @@ public class DrawingView extends View {
     mCanvas.drawPath(mPath, mPaint);
     mPath.reset();
     if (mDrawMode) {
-      mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
+      mPaint.setXfermode(null);
     } else {
       mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
   }
 
-  @Override public boolean onTouchEvent(MotionEvent event) {
+  @Override
+  public boolean onTouchEvent(MotionEvent event) {
     float x = event.getX();
     float y = event.getY();
     switch (event.getAction()) {
@@ -110,7 +110,7 @@ public class DrawingView extends View {
         if (!mDrawMode) {
           mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         } else {
-          mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
+          mPaint.setXfermode(null);
         }
         touch_start(x, y);
         invalidate();
@@ -119,10 +119,8 @@ public class DrawingView extends View {
         touch_move(x, y);
         if (!mDrawMode) {
           mPath.lineTo(mX, mY);
-          mPath.reset();
           mPath.moveTo(x, y);
         }
-        mCanvas.drawPath(mPath, mPaint);
         invalidate();
         break;
       case MotionEvent.ACTION_UP:
@@ -141,7 +139,7 @@ public class DrawingView extends View {
     mPaint.setStrokeJoin(Paint.Join.ROUND);
     mPaint.setStrokeCap(Paint.Cap.ROUND);
     mPaint.setStrokeWidth(mPenSize);
-    mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
+    mPaint.setXfermode(null);
   }
 
   public void initializeEraser() {
@@ -152,7 +150,8 @@ public class DrawingView extends View {
     mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
   }
 
-  @Override public void setBackgroundColor(int color) {
+  @Override
+  public void setBackgroundColor(int color) {
     mCanvas.drawColor(color);
     super.setBackgroundColor(color);
   }
@@ -179,7 +178,8 @@ public class DrawingView extends View {
     mPaint.setColor(color);
   }
 
-  public @ColorInt int getPenColor() {
+  public @ColorInt
+  int getPenColor() {
     return mPaint.getColor();
   }
 
@@ -191,7 +191,7 @@ public class DrawingView extends View {
   }
 
   public boolean saveImage(String filePath, String filename, Bitmap.CompressFormat format,
-      int quality) {
+                           int quality) {
     if (quality > 100) {
       Log.d("saveImage", "quality cannot be greater that 100");
       return false;
