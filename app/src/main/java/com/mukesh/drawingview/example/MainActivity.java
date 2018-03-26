@@ -2,20 +2,16 @@ package com.mukesh.drawingview.example;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.ColorInt;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import com.mukesh.DrawingView;
-import com.pavelsikun.vintagechroma.ChromaDialog;
-import com.pavelsikun.vintagechroma.IndicatorMode;
-import com.pavelsikun.vintagechroma.OnColorSelectedListener;
-import com.pavelsikun.vintagechroma.colormode.ColorMode;
+import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
+import com.pes.androidmaterialcolorpickerdialog.ColorPickerCallback;
 
 public class MainActivity extends AppCompatActivity
     implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
@@ -61,9 +57,8 @@ public class MainActivity extends AppCompatActivity
             Bitmap.CompressFormat.PNG, 100);
         break;
       case R.id.load_button:
-        Log.d("saveImage", "quality cannot be");
         mDrawingView.loadImage(BitmapFactory.decodeResource(getResources(), R.raw.image));
-        Log.d("saveImage", "quality cannot bter that 100");
+        Log.d("saveImage", "quality cannot better that 100");
         break;
       case R.id.pen_button:
         mDrawingView.initializePen();
@@ -72,28 +67,26 @@ public class MainActivity extends AppCompatActivity
         mDrawingView.initializeEraser();
         break;
       case R.id.pen_color_button:
-        new ChromaDialog.Builder().initialColor(Color.GREEN)
-            .colorMode(ColorMode.ARGB)
-            .indicatorMode(IndicatorMode.HEX)
-            .onColorSelected(new OnColorSelectedListener() {
-              @Override public void onColorSelected(@ColorInt int color) {
+        final ColorPicker colorPicker = new ColorPicker(MainActivity.this, 100, 100, 100);
+        colorPicker.setCallback(
+            new ColorPickerCallback() {
+              @Override public void onColorChosen(int color) {
                 mDrawingView.setPenColor(color);
+                colorPicker.dismiss();
               }
-            })
-            .create()
-            .show(getSupportFragmentManager(), "Pen color picker");
+            });
+        colorPicker.show();
         break;
       case R.id.background_color_button:
-        new ChromaDialog.Builder().initialColor(Color.GREEN)
-            .colorMode(ColorMode.ARGB)
-            .indicatorMode(IndicatorMode.HEX)
-            .onColorSelected(new OnColorSelectedListener() {
-              @Override public void onColorSelected(@ColorInt int color) {
+        final ColorPicker backgroundColorPicker = new ColorPicker(MainActivity.this, 100, 100, 100);
+        backgroundColorPicker.setCallback(
+            new ColorPickerCallback() {
+              @Override public void onColorChosen(int color) {
                 mDrawingView.setBackgroundColor(color);
+                backgroundColorPicker.dismiss();
               }
-            })
-            .create()
-            .show(getSupportFragmentManager(), "Background color picker");
+            });
+        backgroundColorPicker.show();
         break;
     }
   }
