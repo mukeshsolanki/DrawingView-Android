@@ -1,14 +1,5 @@
-sudo: required
-
 language: android
-services:
-  - docker
-
-
-before_script:
-  - export GRADLE_USER_HOME=`pwd`/.gradle
-  - chmod +x ./gradlew
-
+jdk: oraclejdk8
 android:
   components:
   - platform-tools
@@ -27,4 +18,10 @@ before_script:
 script:
 - "./gradlew clean test"
 notifications:
-  email: false
+  email:
+    recipients:
+      - support@madapps.in
+    on_success: never
+    on_failure: always
+
+  slack: madappstechnologies:0T1TW6lCma5wp1IPYn4hRp5H
