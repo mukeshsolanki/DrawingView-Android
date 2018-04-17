@@ -28,7 +28,7 @@ allprojects {
 Step 2. Add the dependency
 ```java
 dependencies {
-    compile 'com.github.mukeshsolanki:DrawingView-Android:<latest-version>'
+    implementation 'com.github.mukeshsolanki:DrawingView-Android:<latest-version>'
 }
 ```
 ## How to use DrawingView
