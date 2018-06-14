@@ -16,10 +16,13 @@ import android.view.View;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DrawingView extends View {
   private static final float TOUCH_TOLERANCE = 4;
   private Bitmap mBitmap;
+  private Bitmap mInitBitmap;
   private Canvas mCanvas;
   private Path mPath;
   private Paint mBitmapPaint;
@@ -28,6 +31,8 @@ public class DrawingView extends View {
   private float mX, mY;
   private float mPenSize = 10;
   private float mEraserSize = 10;
+
+  private List<LinePath> mLinePaths = new ArrayList<>();
 
   public DrawingView(Context c) {
     this(c, null);
@@ -68,7 +73,13 @@ public class DrawingView extends View {
 
   @Override protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
+
     canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
+
+    for (LinePath linePath : mLinePaths) {
+      canvas.drawPath(linePath.getDrawPath(), linePath.getDrawPaint());
+    }
+
     canvas.drawPath(mPath, mPaint);
   }
 
@@ -94,7 +105,10 @@ public class DrawingView extends View {
   private void touch_up() {
     mPath.lineTo(mX, mY);
     mCanvas.drawPath(mPath, mPaint);
-    mPath.reset();
+
+    mLinePaths.add(new LinePath(mPath, mPaint));
+    mPath = new Path();
+
     if (mDrawMode) {
       mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
     } else {
@@ -113,7 +127,6 @@ public class DrawingView extends View {
           mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
         }
         touch_start(x, y);
-        invalidate();
         break;
       case MotionEvent.ACTION_MOVE:
         touch_move(x, y);
@@ -123,13 +136,12 @@ public class DrawingView extends View {
           mPath.moveTo(x, y);
         }
         mCanvas.drawPath(mPath, mPaint);
-        invalidate();
         break;
       case MotionEvent.ACTION_UP:
         touch_up();
-        invalidate();
         break;
     }
+    invalidate();
     return true;
   }
 
@@ -185,6 +197,7 @@ public class DrawingView extends View {
 
   public void loadImage(Bitmap bitmap) {
     mBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+    mInitBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
     mCanvas = new Canvas(mBitmap);
     bitmap.recycle();
     invalidate();
@@ -225,5 +238,39 @@ public class DrawingView extends View {
       }
     }
     return false;
+  }
+
+  private class LinePath {
+    private Paint mDrawPaint;
+    private Path mDrawPath;
+
+    LinePath(Path drawPath, Paint drawPaints) {
+      mDrawPaint = new Paint(drawPaints);
+      mDrawPath = new Path(drawPath);
+    }
+
+    Paint getDrawPaint() {
+      return mDrawPaint;
+    }
+
+    Path getDrawPath() {
+      return mDrawPath;
+    }
+  }
+
+  private void clearDraw() {
+    mBitmap.recycle();
+    mBitmap = mInitBitmap.copy(Bitmap.Config.ARGB_8888, true);
+    mCanvas.setBitmap(mBitmap);
+    invalidate();
+  }
+
+  public boolean undo() {
+    if (mLinePaths.size() > 0) {
+      mLinePaths.remove(mLinePaths.size() - 1);
+      clearDraw();
+      invalidate();
+    }
+    return mLinePaths.size() != 0;
   }
 }
