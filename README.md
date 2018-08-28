@@ -1,17 +1,23 @@
 <h1 align="center">DrawingView-Android</h1>
 <p align="center">
-  <a href="https://jitpack.io/#mukeshsolanki/DrawingView-Android"><img src="https://jitpack.io/v/mukeshsolanki/DrawingView-Android/month.svg"/></a>
-  <a href="https://android-arsenal.com/api?level=9"> <img src="https://img.shields.io/badge/API-14%2B-blue.svg?style=flat" /></a>
+  <a class="badge-align" href="https://www.codacy.com/app/mukeshsolanki/DrawingView-Android?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mukeshsolanki/DrawingView-Android&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/1657f302c30f47978e7b823d1d28c649"/></a>
   <a href="https://jitpack.io/#mukeshsolanki/DrawingView-Android"> <img src="https://jitpack.io/v/mukeshsolanki/DrawingView-Android.svg" /></a>
-  <a href="http://android-arsenal.com/details/1/4042"> <img src="https://img.shields.io/badge/Android%20Arsenal-DrawingView--Android-brightgreen.svg?style=flat" /></a>
-  <a href="https://travis-ci.org/mukeshsolanki/DrawingView-Android"> <img src="https://travis-ci.org/mukeshsolanki/DrawingView-Android.svg?branch=master" /></a>
+  <a href="https://circleci.com/gh/mukeshsolanki/DrawingView-Android/tree/master"> <img src="https://circleci.com/gh/mukeshsolanki/DrawingView-Android/tree/master.svg?style=shield" /></a>
   <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
-  <a href="https://www.paypal.me/mukeshsolanki"> <img src="https://img.shields.io/badge/paypal-donate-yellow.svg" /></a>
   <br /><br />
   DrawingView is a simple view that lets you draw on screen using your fingers and lets you save the drawings as images.
 </p>
 
 ![Demo](https://github.com/mukeshsolanki/DrawingView-Android/blob/master/ScreenShoot.gif)
+
+# Support Country Picker for Android
+
+Drawing View is an independent project with ongoing development and support made possible thanks to donations made by [these awesome backers](BACKERS.md#sponsors). If you'd like to join them, please consider:
+
+- [Become a backer or sponsor on Patreon](https://www.patreon.com/mukeshsolanki).
+- [One-time donation via PayPal](https://www.paypal.me/mukeshsolanki)
+
+<a href="https://www.patreon.com/bePatron?c=935498" alt="Become a Patron"><img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" /></a>
 
 ## Getting started
 
