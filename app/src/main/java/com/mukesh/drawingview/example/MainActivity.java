@@ -15,10 +15,10 @@ import com.pes.androidmaterialcolorpickerdialog.ColorPickerCallback;
 
 public class MainActivity extends AppCompatActivity
     implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
-  private Button mSaveButton, mPenButton, mEraserButton, mPenColorButton, mBackgroundColorButton,
-      mLoadButton;
-  private DrawingView mDrawingView;
-  private SeekBar mPenSizeSeekbar, mEraserSeekbar;
+  private Button saveButton, penButton, eraserButton, penColorButton, backgroundColorButton,
+      loadButton;
+  private DrawingView drawingView;
+  private SeekBar penSizeSeekBar, eraserSizeSeekBar;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -28,50 +28,50 @@ public class MainActivity extends AppCompatActivity
   }
 
   private void setListeners() {
-    mSaveButton.setOnClickListener(this);
-    mPenButton.setOnClickListener(this);
-    mEraserButton.setOnClickListener(this);
-    mPenColorButton.setOnClickListener(this);
-    mBackgroundColorButton.setOnClickListener(this);
-    mPenSizeSeekbar.setOnSeekBarChangeListener(this);
-    mEraserSeekbar.setOnSeekBarChangeListener(this);
-    mLoadButton.setOnClickListener(this);
+    saveButton.setOnClickListener(this);
+    penButton.setOnClickListener(this);
+    eraserButton.setOnClickListener(this);
+    penColorButton.setOnClickListener(this);
+    backgroundColorButton.setOnClickListener(this);
+    penSizeSeekBar.setOnSeekBarChangeListener(this);
+    eraserSizeSeekBar.setOnSeekBarChangeListener(this);
+    loadButton.setOnClickListener(this);
   }
 
   private void initializeUI() {
-    mDrawingView = (DrawingView) findViewById(R.id.scratch_pad);
-    mSaveButton = (Button) findViewById(R.id.save_button);
-    mLoadButton = (Button) findViewById(R.id.load_button);
-    mPenButton = (Button) findViewById(R.id.pen_button);
-    mEraserButton = (Button) findViewById(R.id.eraser_button);
-    mPenColorButton = (Button) findViewById(R.id.pen_color_button);
-    mBackgroundColorButton = (Button) findViewById(R.id.background_color_button);
-    mPenSizeSeekbar = (SeekBar) findViewById(R.id.pen_size_seekbar);
-    mEraserSeekbar = (SeekBar) findViewById(R.id.eraser_size_seekbar);
+    drawingView = findViewById(R.id.scratch_pad);
+    saveButton = findViewById(R.id.save_button);
+    loadButton = findViewById(R.id.load_button);
+    penButton = findViewById(R.id.pen_button);
+    eraserButton = findViewById(R.id.eraser_button);
+    penColorButton = findViewById(R.id.pen_color_button);
+    backgroundColorButton = findViewById(R.id.background_color_button);
+    penSizeSeekBar = findViewById(R.id.pen_size_seekbar);
+    eraserSizeSeekBar = findViewById(R.id.eraser_size_seekbar);
   }
 
   @Override public void onClick(View view) {
     switch (view.getId()) {
       case R.id.save_button:
-        mDrawingView.saveImage(Environment.getExternalStorageDirectory().toString(), "test",
+        drawingView.saveImage(Environment.getExternalStorageDirectory().toString(), "test",
             Bitmap.CompressFormat.PNG, 100);
         break;
       case R.id.load_button:
-        mDrawingView.loadImage(BitmapFactory.decodeResource(getResources(), R.raw.image));
+        drawingView.loadImage(BitmapFactory.decodeResource(getResources(), R.raw.image));
         Log.d("saveImage", "quality cannot better that 100");
         break;
       case R.id.pen_button:
-        mDrawingView.initializePen();
+        drawingView.initializePen();
         break;
       case R.id.eraser_button:
-        mDrawingView.initializeEraser();
+        drawingView.initializeEraser();
         break;
       case R.id.pen_color_button:
         final ColorPicker colorPicker = new ColorPicker(MainActivity.this, 100, 100, 100);
         colorPicker.setCallback(
             new ColorPickerCallback() {
               @Override public void onColorChosen(int color) {
-                mDrawingView.setPenColor(color);
+                drawingView.setPenColor(color);
                 colorPicker.dismiss();
               }
             });
@@ -82,29 +82,31 @@ public class MainActivity extends AppCompatActivity
         backgroundColorPicker.setCallback(
             new ColorPickerCallback() {
               @Override public void onColorChosen(int color) {
-                mDrawingView.setBackgroundColor(color);
+                drawingView.setBackgroundColor(color);
                 backgroundColorPicker.dismiss();
               }
             });
         backgroundColorPicker.show();
         break;
+      default:
+        break;
     }
   }
 
   @Override public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-    switch (seekBar.getId()) {
-      case R.id.pen_size_seekbar:
-        mDrawingView.setPenSize(i);
-        break;
-      case R.id.eraser_size_seekbar:
-        mDrawingView.setEraserSize(i);
-        break;
+    int seekBarId = seekBar.getId();
+    if (seekBarId == R.id.pen_size_seekbar) {
+      drawingView.setPenSize(i);
+    } else if (seekBarId == R.id.eraser_size_seekbar) {
+      drawingView.setEraserSize(i);
     }
   }
 
   @Override public void onStartTrackingTouch(SeekBar seekBar) {
+    //Intentionally Empty
   }
 
   @Override public void onStopTrackingTouch(SeekBar seekBar) {
+    //Intentionally Empty
   }
 }

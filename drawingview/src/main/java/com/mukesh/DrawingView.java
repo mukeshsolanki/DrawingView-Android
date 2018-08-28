@@ -19,15 +19,15 @@ import java.io.IOException;
 
 public class DrawingView extends View {
   private static final float TOUCH_TOLERANCE = 4;
-  private Bitmap mBitmap;
-  private Canvas mCanvas;
-  private Path mPath;
-  private Paint mBitmapPaint;
-  private Paint mPaint;
-  private boolean mDrawMode;
-  private float mX, mY;
-  private float mPenSize = 10;
-  private float mEraserSize = 10;
+  private Bitmap bitmap;
+  private Canvas canvas;
+  private Path path;
+  private Paint bitmapPaint;
+  private Paint paint;
+  private boolean drawMode;
+  private float x, y;
+  private float penSize = 10;
+  private float eraserSize = 10;
 
   public DrawingView(Context c) {
     this(c, null);
@@ -43,62 +43,62 @@ public class DrawingView extends View {
   }
 
   private void init() {
-    mPath = new Path();
-    mBitmapPaint = new Paint(Paint.DITHER_FLAG);
-    mPaint = new Paint();
-    mPaint.setAntiAlias(true);
-    mPaint.setDither(true);
-    mPaint.setColor(Color.BLACK);
-    mPaint.setStyle(Paint.Style.STROKE);
-    mPaint.setStrokeJoin(Paint.Join.ROUND);
-    mPaint.setStrokeCap(Paint.Cap.ROUND);
-    mPaint.setStrokeWidth(mPenSize);
-    mDrawMode = true;
-    mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
+    path = new Path();
+    bitmapPaint = new Paint(Paint.DITHER_FLAG);
+    paint = new Paint();
+    paint.setAntiAlias(true);
+    paint.setDither(true);
+    paint.setColor(Color.BLACK);
+    paint.setStyle(Paint.Style.STROKE);
+    paint.setStrokeJoin(Paint.Join.ROUND);
+    paint.setStrokeCap(Paint.Cap.ROUND);
+    paint.setStrokeWidth(penSize);
+    drawMode = true;
+    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
   }
 
   @Override protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
-    if (mBitmap == null) {
-      mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+    if (bitmap == null) {
+      bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
     }
-    mCanvas = new Canvas(mBitmap);
-    mCanvas.drawColor(Color.TRANSPARENT);
+    canvas = new Canvas(bitmap);
+    canvas.drawColor(Color.TRANSPARENT);
   }
 
   @Override protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
-    canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
-    canvas.drawPath(mPath, mPaint);
+    canvas.drawBitmap(bitmap, 0, 0, bitmapPaint);
+    canvas.drawPath(path, paint);
   }
 
-  private void touch_start(float x, float y) {
-    mPath.reset();
-    mPath.moveTo(x, y);
-    mX = x;
-    mY = y;
-    mCanvas.drawPath(mPath, mPaint);
+  private void touchStart(float x, float y) {
+    path.reset();
+    path.moveTo(x, y);
+    this.x = x;
+    this.y = y;
+    canvas.drawPath(path, paint);
   }
 
-  private void touch_move(float x, float y) {
-    float dx = Math.abs(x - mX);
-    float dy = Math.abs(y - mY);
+  private void touchMove(float x, float y) {
+    float dx = Math.abs(x - this.x);
+    float dy = Math.abs(y - this.y);
     if (dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE) {
-      mPath.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2);
-      mX = x;
-      mY = y;
+      path.quadTo(this.x, this.y, (x + this.x) / 2, (y + this.y) / 2);
+      this.x = x;
+      this.y = y;
     }
-    mCanvas.drawPath(mPath, mPaint);
+    canvas.drawPath(path, paint);
   }
 
-  private void touch_up() {
-    mPath.lineTo(mX, mY);
-    mCanvas.drawPath(mPath, mPaint);
-    mPath.reset();
-    if (mDrawMode) {
-      mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
+  private void touchUp() {
+    path.lineTo(x, y);
+    canvas.drawPath(path, paint);
+    path.reset();
+    if (drawMode) {
+      paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
     } else {
-      mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+      paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
   }
 
@@ -107,85 +107,87 @@ public class DrawingView extends View {
     float y = event.getY();
     switch (event.getAction()) {
       case MotionEvent.ACTION_DOWN:
-        if (!mDrawMode) {
-          mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        if (!drawMode) {
+          paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         } else {
-          mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
+          paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
         }
-        touch_start(x, y);
+        touchStart(x, y);
         invalidate();
         break;
       case MotionEvent.ACTION_MOVE:
-        touch_move(x, y);
-        if (!mDrawMode) {
-          mPath.lineTo(mX, mY);
-          mPath.reset();
-          mPath.moveTo(x, y);
+        touchMove(x, y);
+        if (!drawMode) {
+          path.lineTo(this.x, this.y);
+          path.reset();
+          path.moveTo(x, y);
         }
-        mCanvas.drawPath(mPath, mPaint);
+        canvas.drawPath(path, paint);
         invalidate();
         break;
       case MotionEvent.ACTION_UP:
-        touch_up();
+        touchUp();
         invalidate();
+        break;
+      default:
         break;
     }
     return true;
   }
 
   public void initializePen() {
-    mDrawMode = true;
-    mPaint.setAntiAlias(true);
-    mPaint.setDither(true);
-    mPaint.setStyle(Paint.Style.STROKE);
-    mPaint.setStrokeJoin(Paint.Join.ROUND);
-    mPaint.setStrokeCap(Paint.Cap.ROUND);
-    mPaint.setStrokeWidth(mPenSize);
-    mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
+    drawMode = true;
+    paint.setAntiAlias(true);
+    paint.setDither(true);
+    paint.setStyle(Paint.Style.STROKE);
+    paint.setStrokeJoin(Paint.Join.ROUND);
+    paint.setStrokeCap(Paint.Cap.ROUND);
+    paint.setStrokeWidth(penSize);
+    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
   }
 
   public void initializeEraser() {
-    mDrawMode = false;
-    mPaint.setColor(Color.parseColor("#f4f4f4"));
-    mPaint.setStyle(Paint.Style.STROKE);
-    mPaint.setStrokeWidth(mEraserSize);
-    mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+    drawMode = false;
+    paint.setColor(Color.parseColor("#f4f4f4"));
+    paint.setStyle(Paint.Style.STROKE);
+    paint.setStrokeWidth(eraserSize);
+    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
   }
 
   @Override public void setBackgroundColor(int color) {
-    mCanvas.drawColor(color);
+    canvas.drawColor(color);
     super.setBackgroundColor(color);
   }
 
   public void setEraserSize(float size) {
-    mEraserSize = size;
+    eraserSize = size;
     initializeEraser();
   }
 
   public void setPenSize(float size) {
-    mPenSize = size;
+    penSize = size;
     initializePen();
   }
 
   public float getEraserSize() {
-    return mEraserSize;
+    return eraserSize;
   }
 
   public float getPenSize() {
-    return mPenSize;
+    return penSize;
   }
 
   public void setPenColor(@ColorInt int color) {
-    mPaint.setColor(color);
+    paint.setColor(color);
   }
 
   public @ColorInt int getPenColor() {
-    return mPaint.getColor();
+    return paint.getColor();
   }
 
   public void loadImage(Bitmap bitmap) {
-    mBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
-    mCanvas = new Canvas(mBitmap);
+    this.bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+    canvas = new Canvas(this.bitmap);
     bitmap.recycle();
     invalidate();
   }
@@ -203,15 +205,15 @@ public class DrawingView extends View {
         case PNG:
           file = new File(filePath, filename + ".png");
           out = new FileOutputStream(file);
-          return mBitmap.compress(Bitmap.CompressFormat.PNG, quality, out);
+          return bitmap.compress(Bitmap.CompressFormat.PNG, quality, out);
         case JPEG:
           file = new File(filePath, filename + ".jpg");
           out = new FileOutputStream(file);
-          return mBitmap.compress(Bitmap.CompressFormat.JPEG, quality, out);
+          return bitmap.compress(Bitmap.CompressFormat.JPEG, quality, out);
         default:
           file = new File(filePath, filename + ".png");
           out = new FileOutputStream(file);
-          return mBitmap.compress(Bitmap.CompressFormat.PNG, quality, out);
+          return bitmap.compress(Bitmap.CompressFormat.PNG, quality, out);
       }
     } catch (Exception e) {
       e.printStackTrace();
