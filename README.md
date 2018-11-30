@@ -63,6 +63,7 @@ drawingView.setPenSize(float size); //To set the size of the pen
 drawingView.setPenColor(@ColorInt int color); //To set the color of the pen
 drawingView.saveImage(String filePath, String filename, Bitmap.CompressFormat format, int quality); //To save the image after your done drawing
 drawingView.loadImage(Bitmap bitmap); //Load image (your saved drawing)
+drawingView.clear(); //clear image
 ```
 
 ## Author
