@@ -154,6 +154,11 @@ public class DrawingView extends View {
     paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
   }
 
+  public void clear() {
+    canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+    invalidate();
+  }
+
   @Override public void setBackgroundColor(int color) {
     canvas.drawColor(color);
     super.setBackgroundColor(color);

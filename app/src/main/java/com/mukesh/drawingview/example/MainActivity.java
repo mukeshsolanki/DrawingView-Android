@@ -16,7 +16,7 @@ import com.pes.androidmaterialcolorpickerdialog.ColorPickerCallback;
 public class MainActivity extends AppCompatActivity
     implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
   private Button saveButton, penButton, eraserButton, penColorButton, backgroundColorButton,
-      loadButton;
+      loadButton, clearButton;
   private DrawingView drawingView;
   private SeekBar penSizeSeekBar, eraserSizeSeekBar;
 
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity
     penSizeSeekBar.setOnSeekBarChangeListener(this);
     eraserSizeSeekBar.setOnSeekBarChangeListener(this);
     loadButton.setOnClickListener(this);
+    clearButton.setOnClickListener(this);
   }
 
   private void initializeUI() {
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity
     backgroundColorButton = findViewById(R.id.background_color_button);
     penSizeSeekBar = findViewById(R.id.pen_size_seekbar);
     eraserSizeSeekBar = findViewById(R.id.eraser_size_seekbar);
+    clearButton = findViewById(R.id.clear_button);
   }
 
   @Override public void onClick(View view) {
@@ -65,6 +67,9 @@ public class MainActivity extends AppCompatActivity
         break;
       case R.id.eraser_button:
         drawingView.initializeEraser();
+        break;
+      case R.id.clear_button:
+        drawingView.clear();
         break;
       case R.id.pen_color_button:
         final ColorPicker colorPicker = new ColorPicker(MainActivity.this, 100, 100, 100);

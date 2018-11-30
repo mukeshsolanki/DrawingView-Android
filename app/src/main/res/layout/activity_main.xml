@@ -1,111 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/activity_horizontal_margin"
-    tools:context="com.mukesh.drawingview.example.MainActivity"
-    >
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:padding="@dimen/activity_horizontal_margin"
+  tools:context="com.mukesh.drawingview.example.MainActivity">
 
   <com.mukesh.DrawingView
-      android:id="@+id/scratch_pad"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_above="@+id/buttons"
-      />
+    android:id="@+id/scratch_pad"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@+id/buttons" />
 
   <LinearLayout
-      android:id="@+id/buttons"
+    android:id="@+id/buttons"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/size_layout"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_above="@+id/size_layout"
-      android:gravity="center"
-      android:orientation="vertical"
-      >
-    <LinearLayout
-        android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <Button
+        android:id="@+id/save_button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        >
+        android:layout_weight="1"
+        android:text="Save Image" />
+
       <Button
-          android:id="@+id/save_button"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:text="Save Image"
-          />
-      <Button
-          android:id="@+id/load_button"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:text="Load Image"
-          />
+        android:id="@+id/load_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Load Image" />
     </LinearLayout>
+
     <LinearLayout
-        android:layout_width="match_parent"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <Button
+        android:id="@+id/eraser_button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        >
+        android:layout_weight="1"
+        android:text="Eraser" />
+
       <Button
-          android:id="@+id/eraser_button"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:text="Eraser"
-          />
-      <Button
-          android:id="@+id/background_color_button"
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_weight="1"
-          android:text="Background Color"
-          />
+        android:id="@+id/background_color_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="Background Color" />
     </LinearLayout>
+
     <LinearLayout
-        android:layout_width="match_parent"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <Button
+        android:id="@+id/pen_button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        >
+        android:layout_weight="1"
+        android:text="Pen" />
+
       <Button
-          android:id="@+id/pen_button"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:text="Pen"
-          />
-      <Button
-          android:id="@+id/pen_color_button"
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_weight="1"
-          android:text="Pen Color"
-          />
+        android:id="@+id/pen_color_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="Pen Color" />
     </LinearLayout>
   </LinearLayout>
+
   <LinearLayout
-      android:id="@+id/size_layout"
+    android:id="@+id/size_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:orientation="vertical">
+
+    <Button
+      android:id="@+id/clear_button"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_alignParentBottom="true"
-      android:orientation="vertical"
-      >
+      android:text="Clear All" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pen Size"
-        />
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Pen Size" />
+
     <SeekBar
-        android:id="@+id/pen_size_seekbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+      android:id="@+id/pen_size_seekbar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Eraser Size"
-        />
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Eraser Size" />
+
     <SeekBar
-        android:id="@+id/eraser_size_seekbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+      android:id="@+id/eraser_size_seekbar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
   </LinearLayout>
 </RelativeLayout>
