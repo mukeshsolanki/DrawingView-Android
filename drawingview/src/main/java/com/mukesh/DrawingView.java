@@ -249,11 +249,11 @@ public class DrawingView extends View {
       mDrawPath = new Path(drawPath);
     }
 
-    Paint getDrawPaint() {
+    private Paint getDrawPaint() {
       return mDrawPaint;
     }
 
-    Path getDrawPath() {
+    private Path getDrawPath() {
       return mDrawPath;
     }
   }
