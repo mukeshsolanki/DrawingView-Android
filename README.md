@@ -1,9 +1,10 @@
 <h1 align="center">DrawingView-Android</h1>
 <p align="center">
   <a class="badge-align" href="https://www.codacy.com/app/mukeshsolanki/DrawingView-Android?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mukeshsolanki/DrawingView-Android&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/1657f302c30f47978e7b823d1d28c649"/></a>
+  <a href="https://jitpack.io/#mukeshsolanki/DrawingView-Android"> <img src="https://jitpack.io/v/mukeshsolanki/DrawingView-Android/month.svg" /></a>
   <a href="https://jitpack.io/#mukeshsolanki/DrawingView-Android"> <img src="https://jitpack.io/v/mukeshsolanki/DrawingView-Android.svg" /></a>
   <a href="https://circleci.com/gh/mukeshsolanki/DrawingView-Android/tree/master"> <img src="https://circleci.com/gh/mukeshsolanki/DrawingView-Android/tree/master.svg?style=shield" /></a>
-  <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg"/></a>
   <br /><br />
   DrawingView is a simple view that lets you draw on screen using your fingers and lets you save the drawings as images.
 </p>
