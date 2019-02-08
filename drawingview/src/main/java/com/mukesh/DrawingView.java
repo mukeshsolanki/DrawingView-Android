@@ -160,6 +160,9 @@ public class DrawingView extends View {
   }
 
   @Override public void setBackgroundColor(int color) {
+    if (canvas == null) {
+      canvas = new Canvas();
+    }
     canvas.drawColor(color);
     super.setBackgroundColor(color);
   }
@@ -192,7 +195,7 @@ public class DrawingView extends View {
 
   public void loadImage(Bitmap bitmap) {
     this.bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
-    canvas = new Canvas(this.bitmap);
+    canvas.setBitmap(this.bitmap);
     bitmap.recycle();
     invalidate();
   }
