@@ -3,13 +3,13 @@ apply plugin: 'com.android.library'
 group='com.github.mukeshsolanki'
 
 android {
-  compileSdkVersion 29
+  compileSdkVersion 30
 
   defaultConfig {
     minSdkVersion 14
-    targetSdkVersion 29
-    versionCode 11
-    versionName "1.0.12"
+    targetSdkVersion 30
+    versionCode 12
+    versionName "1.0.13"
   }
   buildTypes {
     release {
