@@ -1,4 +1,4 @@
-<h1 align="center">DrawingView-Android</h1>
+<h1 align="center">DrawingView-Android - deprecated</h1>
 <p align="center">
   <a class="badge-align" href="https://www.codacy.com/app/mukeshsolanki/DrawingView-Android?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mukeshsolanki/DrawingView-Android&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/1657f302c30f47978e7b823d1d28c649"/></a>
   <a href="https://jitpack.io/#mukeshsolanki/DrawingView-Android"> <img src="https://jitpack.io/v/mukeshsolanki/DrawingView-Android/month.svg" /></a>
@@ -6,19 +6,11 @@
   <a href="https://github.com/mukeshsolanki/DrawingView-Android/actions"> <img src="https://github.com/mukeshsolanki/DrawingView-Android/workflows/Build/badge.svg" /></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg"/></a>
   <br /><br />
+  This library has been deprecated in favor of https://github.com/akshay2211/DrawBox 
   DrawingView is a simple view that lets you draw on screen using your fingers and lets you save the drawings as images.
 </p>
 
 ![Demo](https://github.com/mukeshsolanki/DrawingView-Android/blob/master/ScreenShoot.gif)
-
-# Support Country Picker for Android
-
-Drawing View is an independent project with ongoing development and support made possible thanks to donations made by [these awesome backers](BACKERS.md#sponsors). If you'd like to join them, please consider:
-
-- [Become a backer or sponsor on Patreon](https://www.patreon.com/mukeshsolanki).
-- [One-time donation via PayPal](https://www.paypal.me/mukeshsolanki)
-
-<a href="https://www.patreon.com/bePatron?c=935498" alt="Become a Patron"><img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" /></a>
 
 ## Getting started
 
